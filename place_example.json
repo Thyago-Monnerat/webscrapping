@@ -1,0 +1,70 @@
+// Esse arquivo é um exemplo com alguns placeDetails, como addressComponents, websiteUri, entre outros.
+
+{
+  "name": "places/XXXXXXXXXXXXXXX",
+  "displayName": "Restaurante Exemplo",
+  "formattedAddress": "Rua Fictícia, 123 - Bairro Exemplo, Cidade Exemplo - CE, 00000-000, País Exemplo",
+  "nationalPhoneNumber": "+55 XX XXXXX-XXXX",
+  "websiteUri": "https://www.exemplo.com",
+  "types": ["restaurant", "food", "point_of_interest", "establishment"],
+  "addressComponents": [
+    {
+      "longText": "Rua Fictícia",
+      "shortText": "Rua Fictícia",
+      "types": ["route"]
+    },
+    {
+      "longText": "123",
+      "shortText": "123",
+      "types": ["street_number"]
+    },
+    {
+      "longText": "Bairro Exemplo",
+      "shortText": "Bairro Exemplo",
+      "types": ["sublocality"]
+    },
+    {
+      "longText": "Cidade Exemplo",
+      "shortText": "CE",
+      "types": ["locality", "political"]
+    },
+    {
+      "longText": "País Exemplo",
+      "shortText": "PE",
+      "types": ["country", "political"]
+    }
+  ],
+  "location": {
+    "latLng": {
+      "latitude": -XX.XXXXX,
+      "longitude": -XX.XXXXX
+    }
+  },
+  "openingHours": {
+    "periods": [
+      {
+        "openDay": "MONDAY",
+        "openTime": "1100",
+        "closeDay": "MONDAY",
+        "closeTime": "2200"
+      }
+    ],
+    "weekdayText": [
+      "Segunda-feira: 11:00–22:00",
+      "Terça-feira: 11:00–22:00",
+      "Quarta-feira: 11:00–22:00",
+      "Quinta-feira: 11:00–22:00",
+      "Sexta-feira: 11:00–23:00",
+      "Sábado: 12:00–23:00",
+      "Domingo: Fechado"
+    ]
+  },
+  "reviews": [
+    {
+      "authorName": "Usuário Exemplo",
+      "rating": 5,
+      "text": "Ótimo atendimento e comida deliciosa!",
+      "time": "2023-07-20T18:30:00Z"
+    }
+  ]
+}
