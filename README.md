@@ -30,6 +30,8 @@ O projeto é feito em Python 3.14, e utiliza as seguintes bibliotecas:
 - O programa itera sobre essa lista, fazendo uma requisição à Places API para cada item.
 
 - A API retorna os dados desejados (Nome, Telefone, Bairro, etc.) e o programa os organiza em um único arquivo Excel.
+---  
+📄 O arquivo final ficou nesse modelo: [modelo_arquivo.pdf  ](./arquivo-20251020_2243351.pdf)  
 
 ---  
 ### ⚠️ Observações Importantes
