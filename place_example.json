@@ -1,70 +1,73 @@
 // Esse arquivo é um exemplo com alguns placeDetails, como addressComponents, websiteUri, entre outros.
 
-{
-  "name": "places/XXXXXXXXXXXXXXX",
-  "displayName": "Restaurante Exemplo",
-  "formattedAddress": "Rua Fictícia, 123 - Bairro Exemplo, Cidade Exemplo - CE, 00000-000, País Exemplo",
-  "nationalPhoneNumber": "+55 XX XXXXX-XXXX",
-  "websiteUri": "https://www.exemplo.com",
-  "types": ["restaurant", "food", "point_of_interest", "establishment"],
-  "addressComponents": [
-    {
-      "longText": "Rua Fictícia",
-      "shortText": "Rua Fictícia",
-      "types": ["route"]
+place_data = {
+    "id": "place_id_generico",
+    "name": {"text": "lugar_generico", "languageCode": "pt-BR"},
+    "formattedAddress": {"text": "endereco_generico", "languageCode": "pt-BR"},
+    "types": ["tipo_generico_1", "tipo_generico_2"],
+    "businessStatus": "OPERATIONAL",
+    "location": {"latitude": 0.0, "longitude": 0.0},
+    "viewport": {
+        "low": {"latitude": 0.0, "longitude": 0.0},
+        "high": {"latitude": 0.0, "longitude": 0.0}
     },
-    {
-      "longText": "123",
-      "shortText": "123",
-      "types": ["street_number"]
+    "rating": 0.0,
+    "googleMapsUri": "https://maps.google.com/?cid=valor_generico",
+    "websiteUri": "https://site_generico.com",
+    "internationalPhoneNumber": "+00 0000-0000",
+    "nationalPhoneNumber": "(00) 0000-0000",
+    "regularOpeningHours": {
+        "periods": [
+            {"open": {"day": 0, "hour": 0, "minute": 0}, "close": {"day": 0, "hour": 0, "minute": 0}}
+        ],
+        "weekdayDescriptions": ["descricao_generica_1", "descricao_generica_2"],
+        "openNow": False
     },
-    {
-      "longText": "Bairro Exemplo",
-      "shortText": "Bairro Exemplo",
-      "types": ["sublocality"]
-    },
-    {
-      "longText": "Cidade Exemplo",
-      "shortText": "CE",
-      "types": ["locality", "political"]
-    },
-    {
-      "longText": "País Exemplo",
-      "shortText": "PE",
-      "types": ["country", "political"]
-    }
-  ],
-  "location": {
-    "latLng": {
-      "latitude": -XX.XXXXX,
-      "longitude": -XX.XXXXX
-    }
-  },
-  "openingHours": {
-    "periods": [
-      {
-        "openDay": "MONDAY",
-        "openTime": "1100",
-        "closeDay": "MONDAY",
-        "closeTime": "2200"
-      }
+    "priceLevel": "PRICE_LEVEL_UNSPECIFIED",
+    "userRatingCount": 0,
+    "photos": [
+        {
+            "name": "places/id_generico/photos/0",
+            "widthPx": 0,
+            "heightPx": 0,
+            "authorAttributions": [
+                {"displayName": "autor_generico", "uri": "https://maps.google.com"}
+            ]
+        }
     ],
-    "weekdayText": [
-      "Segunda-feira: 11:00–22:00",
-      "Terça-feira: 11:00–22:00",
-      "Quarta-feira: 11:00–22:00",
-      "Quinta-feira: 11:00–22:00",
-      "Sexta-feira: 11:00–23:00",
-      "Sábado: 12:00–23:00",
-      "Domingo: Fechado"
-    ]
-  },
-  "reviews": [
-    {
-      "authorName": "Usuário Exemplo",
-      "rating": 5,
-      "text": "Ótimo atendimento e comida deliciosa!",
-      "time": "2023-07-20T18:30:00Z"
-    }
-  ]
+    "reviews": [
+        {
+            "name": "places/id_generico/reviews/0",
+            "rating": 0,
+            "text": {"text": "texto_generico", "languageCode": "pt-BR"},
+            "originalText": {"text": "texto_generico", "languageCode": "pt-BR"},
+            "publishTime": "2025-01-01T00:00:00Z",
+            "authorAttribution": {
+                "displayName": "autor_generico",
+                "uri": "https://maps.google.com/user/valor_generico",
+                "photoUri": "https://link_imagem_generica.com"
+            }
+        }
+    ],
+    "adrFormatAddress": "adr_generico",
+    "addressComponents": [
+        {"longText": "valor_generico", "shortText": "valor_generico", "types": ["tipo_generico"]}
+    ],
+    "plusCode": {
+        "globalCode": "codigo_global_generico",
+        "compoundCode": "codigo_composto_generico"
+    },
+    "primaryType": "tipo_primario_generico",
+    "primaryTypeDisplayName": {"text": "nome_tipo_generico", "languageCode": "pt-BR"},
+    "currentOpeningHours": {"openNow": False},
+    "goodForGroups": False,
+    "reservable": False,
+    "takeout": False,
+    "delivery": False,
+    "servesBeer": False,
+    "servesCoffee": False,
+    "servesLunch": False,
+    "servesDinner": False,
+    "editorialSummary": {"text": "texto_generico", "languageCode": "pt-BR"},
+    "wheelchairAccessibleEntrance": False
 }

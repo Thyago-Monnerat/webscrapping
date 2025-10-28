@@ -3,19 +3,23 @@ import requests
 import pandas as pd
 
 # Lugares nos quais você deseja buscar estabelecimentos
-places = [""]
+places = [
+  "lugar_placeholder",
+  "lugar_placeholder",
+  "lugar_placeholder",
+]
 
 # A sua chave da PlacesAPI
 API_KEY = ""
 
-# Informações que você deseja retornar. Veja mais opções: https://developers.google.com/maps/documentation/places/web-service/text-search?hl=pt-br
-FIELD_MASKS = ""
+# Informações que você deseja retornar, nesse caso, estou buscando nome, componentes de endereço e número nacional. Veja mais opções: https://developers.google.com/maps/documentation/places/web-service/text-search?hl=pt-br
+FIELD_MASKS = "places.displayName,places.addressComponents,places.nationalPhoneNumber"
 
 # Coloque o que deseja buscar. Por exemplo: restaurantes, estabelecimentos, oficinas.
-typeBuild = ""
+place_types = ["restaurantes", "estabelecimentos", "oficinas"]
 
 # Estado desejado. (RJ, Minas Gerais, etc)
-state = ""
+state = "UF"
 
 # Quantos resultados você deseja. O máximo é 20 mesmo que coloque um número maior
 resultCount = 0
@@ -30,42 +34,45 @@ headers = {
 # Dados filtrados
 filtered_results = []
 
-# Dados brutos retornados por cada requisição
-results = {}
-
 # Iteração para cada lugar colocado em 'places'
 for place in places:
-    try:
-        # Iteração para cada tipo de estabelecimento desejado
-        req = requests.post("https://places.googleapis.com/v1/places:searchText", headers=headers,
-                            json={"textQuery": f"{typeBuild} {place} {state}", "maxResultCount": resultCount})
+    # Iteração para cada tipo de estabelecimento desejado.
+    for place_type in place_types:
+        try:
+            req = requests.post("https://places.googleapis.com/v1/places:searchText", headers=headers,
+                                json={"textQuery": f"{place_type} {place} {state}", "maxResultCount": resultCount})
 
-        # Salvando o resultado por lugar retornado
-        results[place] = req.json().get('places', [])
-        # Essa parte está bem hardcoded. Você vai precisar tratar por conta própria e colocar os campos desejados.
-        for index, place_result in enumerate(results[place]):
-
-            # Exemplo de como tratei o nome dos resultados. obs: veja como tratar os dados. da forma que está, não irá funcionar.
+            # Salvando o resultado por lugar retornado
             # Deixei um arquivo para exemplificar como será o retorno da requisição. place_example.json
-            name = place_result.get("displayName", "")
-            addressComponents = place.get("addressComponents", [])
-            number = place.get("number", "")
+            data = req.json().get('places', [])
 
-            # Aqui eu utilizei um laço for, pois utilizei o addressComponents, que retorna um array com várias informações sobre endereço
-            address = ""
-            for component in addressComponents:
-                if "sublocality" in component.get("types", []):
-                    address = component.get("longText", "")
-                    break
+            # Iteração nos dados brutos vindos da requisição.
+            for p in data:
+                # Extraindo os dados desejados.
+                name = p.get("displayName", {}).get("text", "")
+                addressComponents = p.get("addressComponents", [])
+                number = p.get("nationalPhoneNumber", "")
 
-            # Utilizei uma condição if para salvar apenas lugares com telefones disponíveis, já que era o objetivo do projeto
-            if number:
-                filtered_results.append({
-                    "Nome": name,
-                })
+                # Aqui eu utilizei um laço for, pois utilizei o addressComponents, que retorna um array com várias informações sobre endereço
+                address = ""
+                for component in addressComponents:
+                    # Sublocality se refere ao bairro. Dado que eu estava buscando
+                    if "sublocality" in component.get("types", []):
+                        address = component.get("longText", "")
+                        break
 
-    except requests.exceptions.RequestException as e:
-        print(f"Error ao buscar por {place}. {e}")
+                # Utilizei uma condição if para salvar apenas lugares com telefones disponíveis, já que era o objetivo do projeto
+                if number:
+                    filtered_results.append({
+                        "Nome": name,
+                        "Bairro": address,
+                        "Telefone": number,
+                        "Tipo": place_type,
+                        "Cidade": place
+                    })
+
+        except requests.exceptions.RequestException as e:
+            print(f"Error ao buscar por {place}. {e}")
 
 # Por fim, monto um DataFrame
 table = pd.DataFrame(filtered_results)
